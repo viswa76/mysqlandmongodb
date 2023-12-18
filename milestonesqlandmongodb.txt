@@ -1,0 +1,733 @@
+Milestone
+
+1)MYSQL
+
+
+
+ Create a table with suitable constraints and fill the table with following dataset.
+mysql> use viswa;
+Database changed
+mysql> create table teachers(teach_id int,teachname varchar(40),department varchar(50),salary varchar(50),gender varchar(10))
+    -> ;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into teachers(dob date)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date)' at line 1
+mysql> alter table teachers add dob date;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into teachers values(1,"viswa","CSE",30000,"M",2000-09-19);
+ERROR 1292 (22007): Incorrect date value: '1972' for column 'dob' at row 1
+mysql> insert into teachers values(1,"viswa","CSE",30000,"M","2000-09-19");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(2,"haris","CA",32000,"M","2000-07-20");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(3,"abishek","MECH",22000,"M","1998-07-20");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(4,"giftson","canva",32000,"M","1998-09-29");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(5,"snega","software",42000,"G","2000-12-30");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(6,"preethi","java",42000,"G","2000-09-18");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(7,"amritha","UI",22000,"G","2003-09-18");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(8,"ramya","history",32000,"G","2003-04-18");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(9,"mohan","maths",12000,"B","2001-08-18");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into teachers values(10,"divya","science",42000,"G","2003-08-20");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from teachers;
++----------+-----------+------------+--------+--------+------------+
+| teach_id | teachname | department | salary | gender | dob        |
++----------+-----------+------------+--------+--------+------------+
+|        1 | viswa     | CSE        | 30000  | M      | 2000-09-19 |
+|        2 | haris     | CA         | 32000  | M      | 2000-07-20 |
+|        3 | abishek   | MECH       | 22000  | M      | 1998-07-20 |
+|        4 | giftson   | canva      | 32000  | M      | 1998-09-29 |
+|        5 | snega     | software   | 42000  | G      | 2000-12-30 |
+|        6 | preethi   | java       | 42000  | G      | 2000-09-18 |
+|        7 | amritha   | UI         | 22000  | G      | 2003-09-18 |
+|        8 | ramya     | history    | 32000  | G      | 2003-04-18 |
+|        9 | mohan     | maths      | 12000  | B      | 2001-08-18 |
+|       10 | divya     | science    | 42000  | G      | 2003-08-20 |
++----------+-----------+------------+--------+--------+------------+
+10 rows in set (0.00 sec)
+
+
+
+
+Write an SQL. Query to select all the information of teachers in computer department.
+
+mysql> select * from teachers where department = "CSE"
+    -> ;
++----------+-----------+------------+--------+--------+------------+
+| teach_id | teachname | department | salary | gender | dob        |
++----------+-----------+------------+--------+--------+------------+
+|        1 | viswa     | CSE        | 30000  | M      | 2000-09-19 |
++----------+-----------+------------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+03. Write a query is list the name of female teachers in History department.
+mysql> select * from teachers where gender = "G";
++----------+-----------+------------+--------+--------+------------+
+| teach_id | teachname | department | salary | gender | dob        |
++----------+-----------+------------+--------+--------+------------+
+|        5 | snega     | software   | 42000  | G      | 2000-12-30 |
+|        6 | preethi   | java       | 42000  | G      | 2000-09-18 |
+|        7 | amritha   | UI         | 22000  | G      | 2003-09-18 |
+|        8 | ramya     | history    | 32000  | G      | 2003-04-18 |
+|       10 | divya     | science    | 42000  | G      | 2003-08-20 |
++----------+-----------+------------+--------+--------+------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+
+
+4)list all names of teachers with date of admission in ascending order
+mysql> select * from teachers order by dob;
++----------+-----------+------------+--------+--------+------------+
+| teach_id | teachname | department | salary | gender | dob        |
++----------+-----------+------------+--------+--------+------------+
+|        3 | abishek   | MECH       | 22000  | M      | 1998-07-20 |
+|        4 | giftson   | canva      | 32000  | M      | 1998-09-29 |
+|        2 | haris     | CA         | 32000  | M      | 2000-07-20 |
+|        6 | preethi   | java       | 42000  | G      | 2000-09-18 |
+|        1 | viswa     | CSE        | 30000  | M      | 2000-09-19 |
+|        5 | snega     | software   | 42000  | G      | 2000-12-30 |
+|        9 | mohan     | maths      | 12000  | M      | 2001-08-18 |
+|        8 | ramya     | history    | 32000  | G      | 2003-04-18 |
+|       10 | divya     | science    | 42000  | G      | 2003-08-20 |
+|        7 | amritha   | UI         | 22000  | G      | 2003-09-18 |
++----------+-----------+------------+--------+--------+------------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+
+5)display Teacher's name, Department, and Salary of male teacher.
+mysql> select * from teachers where gender="M";
++----------+-----------+------------+--------+--------+------------+
+| teach_id | teachname | department | salary | gender | dob        |
++----------+-----------+------------+--------+--------+------------+
+|        1 | viswa     | CSE        | 30000  | M      | 2000-09-19 |
+|        2 | haris     | CA         | 32000  | M      | 2000-07-20 |
+|        3 | abishek   | MECH       | 22000  | M      | 1998-07-20 |
+|        4 | giftson   | canva      | 32000  | M      | 1998-09-29 |
+|        9 | mohan     | maths      | 12000  | M      | 2001-08-18 |
++----------+-----------+------------+--------+--------+------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
+6. I count the number of items whose salary is less than 10,000
+mysql> select count(salary) from teachers where salary<10000;
++---------------+
+| count(salary) |
++---------------+
+|             1 |
++---------------+
+1 row in set (0.01 sec)
+
+
+
+
+
+
+
+7)insert a new record in the Teacher table with the following data: 8, "Mersha", computer" (1/1/2000),12000,"m"
+mysql> insert into teachers values(8,"mersha","computer",12000,"M","2000-01-01")
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+
+
+
+
+8)List the teacher detail who is getting the minimum salary.
+mysql> select * from teachers where salary = (select min(salary) from teachers);
++----------+-----------+------------+--------+--------+------------+
+| teach_id | teachname | department | salary | gender | dob        |
++----------+-----------+------------+--------+--------+------------+
+|        9 | mohan     | maths      | 12000  | M      | 2001-08-18 |
+|        8 | mersha    | computer   | 12000  | M      | 2000-01-01 |
++----------+-----------+------------+--------+--------+------------+
+2 rows in set (0.01 sec)
+
+
+
+
+
+
+9)List the teacher detail who is getting the second minimum salary
+mysql> SELECT MIN(salary) AS second_min_salary
+    -> FROM teachers
+    -> WHERE salary > (SELECT MIN(salary) FROM teachers);
++-------------------+
+| second_min_salary |
++-------------------+
+| 2000              |
++-------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+10)list down the average salary of the teachers belongs to history department
+mysql> SELECT MIN(salary) AS second_min_salary
+    -> FROM teachers
+    -> WHERE salary > (SELECT MIN(salary) FROM teachers);
++-------------------+
+| second_min_salary |
++-------------------+
+| 2000              |
++-------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+MONGODB
+
+1)Write a MongoDB query to display at least 10 details of the documents of book id. Btitle, authors in array and price for all the documents in the collection Bookstore.
+
+
+
+
+
+
+test> use viswa
+switched to db viswa
+viswa> db.createCollection("bookstore")
+{ ok: 1 }
+viswa> db.insertMany([{book_id:1,btitle:"html",authors:["viswa","snega"],price:100}])
+TypeError: db.insertMany is not a function
+viswa> db.bookstore.insertMany([{book_id:1,btitle:"html",authors:["viswa","snega"],price:100}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fc98a5fd2759232cd5f99') }
+}
+viswa> db.bookstore.insertMany([{book_id:2,btitle:"css",authors:["haris","preethi"],price:100}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fca325fd2759232cd5f9a') }
+}
+viswa> db.bookstore.insertMany([{book_id:3,btitle:"bootstrap",authors:["abishek","abinaya"],price:800}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fca595fd2759232cd5f9b') }
+}
+viswa> db.bookstore.insertMany([{book_id:4,btitle:"javascript",authors:["gifston","sharon"],price:1600}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fca8e5fd2759232cd5f9c') }
+}
+viswa> db.bookstore.insertMany([{book_id:4,btitle:"reactjs",authors:["abishek","dharni"],price:1000}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fcac75fd2759232cd5f9d') }
+}
+viswa> db.bookstore.updateOne({bitle:"reactjs"},{$set:{book_id:5}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+viswa> db.bookstore.find()
+[
+  {
+    _id: ObjectId('657fc98a5fd2759232cd5f99'),
+    book_id: 1,
+    btitle: 'html',
+    authors: [ 'viswa', 'snega' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fca325fd2759232cd5f9a'),
+    book_id: 2,
+    btitle: 'css',
+    authors: [ 'haris', 'preethi' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fca595fd2759232cd5f9b'),
+    book_id: 3,
+    btitle: 'bootstrap',
+    authors: [ 'abishek', 'abinaya' ],
+    price: 800
+  },
+  {
+    _id: ObjectId('657fca8e5fd2759232cd5f9c'),
+    book_id: 4,
+    btitle: 'javascript',
+    authors: [ 'gifston', 'sharon' ],
+    price: 1600
+  },
+  {
+    _id: ObjectId('657fcac75fd2759232cd5f9d'),
+    book_id: 4,
+    btitle: 'reactjs',
+    authors: [ 'abishek', 'dharni' ],
+    price: 1000
+  }
+]
+viswa> db.bookstore.updateOne({btitle:"reactjs"},{$set:{book_id:5}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+viswa> db.bookstore.find()
+[
+  {
+    _id: ObjectId('657fc98a5fd2759232cd5f99'),
+    book_id: 1,
+    btitle: 'html',
+    authors: [ 'viswa', 'snega' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fca325fd2759232cd5f9a'),
+    book_id: 2,
+    btitle: 'css',
+    authors: [ 'haris', 'preethi' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fca595fd2759232cd5f9b'),
+    book_id: 3,
+    btitle: 'bootstrap',
+    authors: [ 'abishek', 'abinaya' ],
+    price: 800
+  },
+  {
+    _id: ObjectId('657fca8e5fd2759232cd5f9c'),
+    book_id: 4,
+    btitle: 'javascript',
+    authors: [ 'gifston', 'sharon' ],
+    price: 1600
+  },
+  {
+    _id: ObjectId('657fcac75fd2759232cd5f9d'),
+    book_id: 5,
+    btitle: 'reactjs',
+    authors: [ 'abishek', 'dharni' ],
+    price: 1000
+  }
+]
+viswa> db.bookstore.insertMany([{book_id:6,btitle:"SQL",authors:["viswa","snega"],price:23000}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fcca75fd2759232cd5f9e') }
+}
+viswa> db.bookstore.insertMany([{book_id:7,btitle:"mongodb",authors:["haris","preethi"],price:2000}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fccce5fd2759232cd5f9f') }
+}
+viswa> db.bookstore.insertMany([{book_id:8,btitle:"java",authors:["sara","mohan"],price:1800}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fcce85fd2759232cd5fa0') }
+}
+viswa> db.bookstore.insertMany([{book_id:9,btitle:"node",authors:["abhinesh","mohan"],price:1600}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fccfd5fd2759232cd5fa1') }
+}
+viswa> db.bookstore.insertMany([{book_id:10,btitle:"full stack developer",authors:["viswa","snega"],price:56600}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('657fcd235fd2759232cd5fa2') }
+}
+viswa> db.bookstore.find()
+[
+  {
+    _id: ObjectId('657fc98a5fd2759232cd5f99'),
+    book_id: 1,
+    btitle: 'html',
+    authors: [ 'viswa', 'snega' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fca325fd2759232cd5f9a'),
+    book_id: 2,
+    btitle: 'css',
+    authors: [ 'haris', 'preethi' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fca595fd2759232cd5f9b'),
+    book_id: 3,
+    btitle: 'bootstrap',
+    authors: [ 'abishek', 'abinaya' ],
+    price: 800
+  },
+  {
+    _id: ObjectId('657fca8e5fd2759232cd5f9c'),
+    book_id: 4,
+    btitle: 'javascript',
+    authors: [ 'gifston', 'sharon' ],
+    price: 1600
+  },
+  {
+    _id: ObjectId('657fcac75fd2759232cd5f9d'),
+    book_id: 5,
+    btitle: 'reactjs',
+    authors: [ 'abishek', 'dharni' ],
+    price: 1000
+  },
+  {
+    _id: ObjectId('657fcca75fd2759232cd5f9e'),
+    book_id: 6,
+    btitle: 'SQL',
+    authors: [ 'viswa', 'snega' ],
+    price: 23000
+  },
+  {
+    _id: ObjectId('657fccce5fd2759232cd5f9f'),
+    book_id: 7,
+    btitle: 'mongodb',
+    authors: [ 'haris', 'preethi' ],
+    price: 2000
+  },
+  {
+    _id: ObjectId('657fcce85fd2759232cd5fa0'),
+    book_id: 8,
+    btitle: 'java',
+    authors: [ 'sara', 'mohan' ],
+    price: 1800
+  },
+  {
+    _id: ObjectId('657fccfd5fd2759232cd5fa1'),
+    book_id: 9,
+    btitle: 'node',
+    authors: [ 'abhinesh', 'mohan' ],
+    price: 1600
+  },
+  {
+    _id: ObjectId('657fcd235fd2759232cd5fa2'),
+    book_id: 10,
+    btitle: 'full stack developer',
+    authors: [ 'viswa', 'snega' ],
+    price: 56600
+  }
+]
+
+
+
+
+
+2)Write a MongoDB query to display the fields Btitle, authors and price but exclude the bookid for all the documents in the collection Bookstore.
+
+viswa> db.bookstore.find({},{btitle:1,authors:1,price:1,_id:0}).pretty()
+[
+  { btitle: 'html', authors: [ 'viswa', 'snega' ], price: 100 },
+  { btitle: 'css', authors: [ 'haris', 'preethi' ], price: 100 },
+  {
+    btitle: 'bootstrap',
+    authors: [ 'abishek', 'abinaya' ],
+    price: 800
+  },
+  {
+    btitle: 'javascript',
+    authors: [ 'gifston', 'sharon' ],
+    price: 1600
+  },
+  { btitle: 'reactjs', authors: [ 'abishek', 'dharni' ], price: 1000 },
+  { btitle: 'SQL', authors: [ 'viswa', 'snega' ], price: 23000 },
+  { btitle: 'mongodb', authors: [ 'haris', 'preethi' ], price: 2000 },
+  { btitle: 'java', authors: [ 'sara', 'mohan' ], price: 1800 },
+  { btitle: 'node', authors: [ 'abhinesh', 'mohan' ], price: 1600 },
+  {
+    btitle: 'full stack developer',
+    authors: [ 'viswa', 'snega' ],
+    price: 56600
+  }
+]
+
+
+
+
+
+
+3)Write a MongoDB query to display the first 3 books based on similar authors.
+viswa> db.bookstore.find({},{authors:["viswa","snega"]}).limit(3)
+[
+  {
+    _id: ObjectId('657fc98a5fd2759232cd5f99'),
+    authors: [ 'viswa', 'snega' ]
+  },
+  {
+    _id: ObjectId('657fca325fd2759232cd5f9a'),
+    authors: [ 'viswa', 'snega' ]
+  },
+  {
+    _id: ObjectId('657fca595fd2759232cd5f9b'),
+    authors: [ 'viswa', 'snega' ]
+  }
+]
+
+
+
+
+
+4)Write a MongoDB query to find the book price more than 1500.
+viswa> db.bookstore.find({price:{$gt:1500}})
+[
+  {
+    _id: ObjectId('657fca8e5fd2759232cd5f9c'),
+    book_id: 4,
+    btitle: 'javascript',
+    authors: [ 'gifston', 'sharon' ],
+    price: 1600
+  },
+  {
+    _id: ObjectId('657fcca75fd2759232cd5f9e'),
+    book_id: 6,
+    btitle: 'SQL',
+    authors: [ 'viswa', 'snega' ],
+    price: 23000
+  },
+  {
+    _id: ObjectId('657fccce5fd2759232cd5f9f'),
+    book_id: 7,
+    btitle: 'mongodb',
+    authors: [ 'haris', 'preethi' ],
+    price: 2000
+  },
+  {
+    _id: ObjectId('657fcce85fd2759232cd5fa0'),
+    book_id: 8,
+    btitle: 'java',
+    authors: [ 'sara', 'mohan' ],
+    price: 1800
+  },
+  {
+    _id: ObjectId('657fccfd5fd2759232cd5fa1'),
+    book_id: 9,
+    btitle: 'node',
+    authors: [ 'abhinesh', 'mohan' ],
+    price: 1600
+  },
+  {
+    _id: ObjectId('657fcd235fd2759232cd5fa2'),
+    book_id: 10,
+    btitle: 'full stack developer',
+    authors: [ 'viswa', 'snega' ],
+    price: 56600
+  }
+]
+
+
+
+
+
+
+5)Write a MongoDB query to find the book title who's price is more than 800 but less Chan 2000.
+viswa> db.bookstore.find({price:{$gt:800,$lt:2000}})
+[
+  {
+    _id: ObjectId('657fca8e5fd2759232cd5f9c'),
+    book_id: 4,
+    btitle: 'javascript',
+    authors: [ 'gifston', 'sharon' ],
+    price: 1600
+  },
+  {
+    _id: ObjectId('657fcac75fd2759232cd5f9d'),
+    book_id: 5,
+    btitle: 'reactjs',
+    authors: [ 'abishek', 'dharni' ],
+    price: 1000
+  },
+  {
+    _id: ObjectId('657fcce85fd2759232cd5fa0'),
+    book_id: 8,
+    btitle: 'java',
+    authors: [ 'sara', 'mohan' ],
+    price: 1800
+  },
+  {
+    _id: ObjectId('657fccfd5fd2759232cd5fa1'),
+    book_id: 9,
+    btitle: 'node',
+    authors: [ 'abhinesh', 'mohan' ],
+    price: 1600
+  }
+]
+
+
+
+
+
+
+
+6)Write a MongoDB query to arrange the book name of the bookstore in ascending order along with all the columns.
+viswa> db.bookstore.find({},{btitle:1,_id:0}).sort({btitle:1})
+[
+  { btitle: 'SQL' },
+  { btitle: 'bootstrap' },
+  { btitle: 'css' },
+  { btitle: 'full stack developer' },
+  { btitle: 'html' },
+  { btitle: 'java' },
+  { btitle: 'javascript' },
+  { btitle: 'mongodb' },
+  { btitle: 'node' },
+  { btitle: 'reactjs' }
+]
+
+
+
+
+
+
+
+7)Write a MongoDB query to arrange the book name of the bookstore in ascending order along with all the columns.
+viswa> db.bookstore.find({authors:["viswa","snega"]})
+[
+  {
+    _id: ObjectId('657fc98a5fd2759232cd5f99'),
+    book_id: 1,
+    btitle: 'html',
+    authors: [ 'viswa', 'snega' ],
+    price: 100
+  },
+  {
+    _id: ObjectId('657fcca75fd2759232cd5f9e'),
+    book_id: 6,
+    btitle: 'SQL',
+    authors: [ 'viswa', 'snega' ],
+    price: 23000
+  },
+  {
+    _id: ObjectId('657fcd235fd2759232cd5fa2'),
+    book_id: 10,
+    btitle: 'full stack developer',
+    authors: [ 'viswa', 'snega' ],
+    price: 56600
+  }
+]
+
+
+
+
+
+
+
+
+8)Write a MongoDB query to update & increase the book price Rs.500 in all book name as "MongoDB Practice".
+viswa> db.bookstore.updateMany({},{$inc:{price:500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 10,
+  modifiedCount: 10,
+  upsertedCount: 0
+}
+
+
+
+
+
+
+
+9)Write a MongoDB query to use Update modifiers (Sset, Spush, Spull, SsetOnInsert,Supsert) in bookstore.
+viswa> db.bookstore.updateMany({book_id:10},{$set:{book_id:11}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+viswa> db.bookstore.updateMany({book_id:9},{$push:{discountprice:100}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+viswa> db.bookstore.find({book_id:9})
+[
+  {
+    _id: ObjectId('657fccfd5fd2759232cd5fa1'),
+    book_id: 9,
+    btitle: 'node',
+    authors: [ 'abhinesh', 'mohan' ],
+    price: 2100,
+    discountprice: [ 100 ]
+  }
+]
+viswa> db.bookstore.updateMany({book_id:9},{$push:{location:chennai}}).{upsert:true}
+Uncaught:
+SyntaxError: Unexpected token (1:64)
+
+> 1 | db.bookstore.updateMany({book_id:9},{$push:{location:chennai}}).{upsert:true}
+    |                                                                 ^
+  2 |
+
+viswa> db.bookstore.updateMany({book_id:9},{$push:{location:chennai}}),{upsert:true}
+ReferenceError: chennai is not defined
+viswa> db.bookstore.updateMany({book_id:9},{$push:{location:"chennai"}}),{upsert:true}
+{ upsert: true }
+viswa> db.bookstore.find({book_id:9})
+[
+  {
+    _id: ObjectId('657fccfd5fd2759232cd5fa1'),
+    book_id: 9,
+    btitle: 'node',
+    authors: [ 'abhinesh', 'mohan' ],
+    price: 2100,
+    discountprice: [ 100 ],
+    location: [ 'chennai' ]
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
